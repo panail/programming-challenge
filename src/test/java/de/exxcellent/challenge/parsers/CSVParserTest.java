@@ -10,9 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CSVParserTest {
     Parser parser;
+
     @BeforeEach
     void setUp() {
-        parser=new CSVParser();
+        parser = new CSVParser();
     }
 
     @Test
@@ -23,9 +24,9 @@ class CSVParserTest {
         validCsv.add("x,y,z");
         try {
             ParsedData parsed = parser.parse(validCsv);
-            assertEquals(parsed.getColumnNames().get(1),"B","Columname should be B");
-            assertEquals(parsed.getData().get(1).get(1),"y","Data should be y");
-        }catch(Exception e){
+            assertEquals("B", parsed.getColumnNames().get(1), "Columname should be B");
+            assertEquals("y", parsed.getData().get(1).get(1), "Data should be y");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -34,7 +35,7 @@ class CSVParserTest {
     void emptyFileThrows() {
         List<String> onlyHeaders = new ArrayList<String>();
         onlyHeaders.add("A,B,C");
-        Exception exception=assertThrows(InvalidFormat.class,()->parser.parse(onlyHeaders));
+        Exception exception = assertThrows(InvalidFormat.class, () -> parser.parse(onlyHeaders));
     }
 
     @Test
@@ -43,6 +44,6 @@ class CSVParserTest {
         invalidCsv.add("text, not");
         invalidCsv.add("in csv format");
         invalidCsv.add("");
-        Exception exception=assertThrows(InvalidFormat.class,()->parser.parse(invalidCsv));
+        Exception exception = assertThrows(InvalidFormat.class, () -> parser.parse(invalidCsv));
     }
 }
