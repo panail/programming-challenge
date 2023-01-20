@@ -1,5 +1,6 @@
 package de.exxcellent.challenge.readers;
 
+import de.exxcellent.challenge.data.UnparsedData;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,10 +21,10 @@ class FileResourceReaderTest {
 
     @Test
     void readingFileSucceedes() {
-        List<String> content = assertDoesNotThrow(() -> reader.read("src/test/resources/readerTest.csv"));
-        assertEquals("1,2,3", content.get(1), "second line of readerTest.csv should be 1,2,3");
+        UnparsedData content = assertDoesNotThrow(() -> reader.read("src/test/resources/readerTest.csv"));
+        assertEquals("1,2,3", content.getData().get(1), "second line of readerTest.csv should be 1,2,3");
         content = assertDoesNotThrow(() -> reader.read("src/test/resources/readerTest.txt"));
-        assertEquals("not", content.get(1), "second line of readerTest.txt should be \"not\"");
+        assertEquals("not", content.getData().get(1), "second line of readerTest.txt should be \"not\"");
     }
 
     @Test

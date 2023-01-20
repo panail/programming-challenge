@@ -1,6 +1,7 @@
 package de.exxcellent.challenge.parsers;
 
 import de.exxcellent.challenge.data.ParsedData;
+import de.exxcellent.challenge.data.UnparsedData;
 import de.exxcellent.challenge.exceptions.InvalidFormat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,8 @@ class CSVParserTest {
         validCsv.add("A,B,C");
         validCsv.add("1,2,3");
         validCsv.add("x,y,z");
-        ParsedData parsed = assertDoesNotThrow(() -> parser.parse(validCsv));
+        UnparsedData unparsedValidCSV = new UnparsedData(validCsv, "csv");
+        ParsedData parsed = assertDoesNotThrow(() -> parser.parse(unparsedValidCSV));
         assertEquals("B", parsed.getColumnNames().get(1), "Columname should be B");
         assertEquals("y", parsed.getData().get(1).get(1), "Data should be y");
     }
@@ -33,7 +35,8 @@ class CSVParserTest {
     void emptyFileThrows() {
         List<String> onlyHeaders = new ArrayList<String>();
         onlyHeaders.add("A,B,C");
-        Exception exception = assertThrows(InvalidFormat.class, () -> parser.parse(onlyHeaders));
+        UnparsedData unparsedOnlyHeaders = new UnparsedData(onlyHeaders, "csv");
+        Exception exception = assertThrows(InvalidFormat.class, () -> parser.parse(unparsedOnlyHeaders));
     }
 
     @Test
@@ -42,6 +45,7 @@ class CSVParserTest {
         invalidCsv.add("text, not");
         invalidCsv.add("in csv format");
         invalidCsv.add("");
-        Exception exception = assertThrows(InvalidFormat.class, () -> parser.parse(invalidCsv));
+        UnparsedData unparsedInvalid = new UnparsedData(invalidCsv, "csv");
+        Exception exception = assertThrows(InvalidFormat.class, () -> parser.parse(unparsedInvalid));
     }
 }

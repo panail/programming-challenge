@@ -1,6 +1,7 @@
 package de.exxcellent.challenge;
 
 import de.exxcellent.challenge.analysers.FootballAnalyser;
+import de.exxcellent.challenge.data.UnparsedData;
 import de.exxcellent.challenge.parsers.CSVParser;
 import de.exxcellent.challenge.data.ParsedData;
 import de.exxcellent.challenge.parsers.Parser;
@@ -20,7 +21,7 @@ class FootballAnalyserTest {
         Parser parser = new CSVParser();
         ParsedData parsed;
         String team = "";
-        List<String> unparsed = assertDoesNotThrow(() -> reader.read("src/test/resources/football.csv"));
+        UnparsedData unparsed = assertDoesNotThrow(() -> reader.read("src/test/resources/football.csv"));
         parsed = assertDoesNotThrow(() -> parser.parse(unparsed));
         FootballAnalyser footballAnalyser = assertDoesNotThrow(() -> new FootballAnalyser(parsed));
         team = footballAnalyser.getTeamLowestGoalDifference();

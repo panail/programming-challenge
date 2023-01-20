@@ -3,6 +3,7 @@ package de.exxcellent.challenge;
 import de.exxcellent.challenge.analysers.FootballAnalyser;
 import de.exxcellent.challenge.analysers.WeatherAnalyser;
 import de.exxcellent.challenge.data.ParsedData;
+import de.exxcellent.challenge.data.UnparsedData;
 import de.exxcellent.challenge.parsers.Parser;
 import de.exxcellent.challenge.parsers.ParserFactory;
 import de.exxcellent.challenge.readers.FileResourceReader;
@@ -32,7 +33,7 @@ public final class App {
             Parser parser = parserFactory.createParserByType("csv");
             ParsedData parsed;
 
-            List<String> unparsed = reader.read("src/main/resources/de/exxcellent/challenge/weather.csv");
+            UnparsedData unparsed = reader.read("src/main/resources/de/exxcellent/challenge/weather.csv");
             parsed = parser.parse(unparsed);
             WeatherAnalyser weatherAnalyser = new WeatherAnalyser(parsed);
             String dayWithSmallestTempSpread = weatherAnalyser.getDaySmallestTemperatureSpread();
