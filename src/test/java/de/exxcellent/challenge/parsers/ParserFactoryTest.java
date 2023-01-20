@@ -20,6 +20,7 @@ class ParserFactoryTest {
         assertTrue(parser instanceof CSVParser);
     }
 
+    @Test
     void unsuportedTypeThrows() {
         assertThrows(NotSupported.class, () -> parserFactory.createParserByType("JSON"));
     }

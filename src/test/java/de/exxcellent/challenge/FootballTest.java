@@ -19,14 +19,11 @@ class FootballTest {
         Parser parser = new CSVParser();
         ParsedData parsed;
         String team = "";
-        try {
-            List<String> unparsed = reader.read("src/test/resources/football.csv");
-            parsed = parser.parse(unparsed);
-            Football football = new Football(parsed);
-            team = football.getTeamLowestGoalDifference();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        assertEquals("Aston_Villa", team, "team with lowest goal difference should be Arsenal");
+        List<String> unparsed = assertDoesNotThrow(() -> reader.read("src/test/resources/football.csv"));
+        parsed = assertDoesNotThrow(() -> parser.parse(unparsed));
+        Football football = assertDoesNotThrow(() -> new Football(parsed));
+        team = football.getTeamLowestGoalDifference();
+
+        assertEquals("Aston_Villa", team, "team with lowest goal difference should be Aston Villa");
     }
 }

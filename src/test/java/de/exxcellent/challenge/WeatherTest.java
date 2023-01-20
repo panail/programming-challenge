@@ -20,15 +20,12 @@ class WeatherTest {
         Parser parser = new CSVParser();
         ParsedData parsed;
         String day = "";
-        try {
-            List<String> unparsed = reader.read("src/test/resources/weather.csv");
-            parsed = parser.parse(unparsed);
-            Weather weather = new Weather(parsed);
-            day = weather.getDaySmallestTemperatureSpread();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        List<String> unparsed = assertDoesNotThrow(() -> reader.read("src/test/resources/weather.csv"));
+        parsed = assertDoesNotThrow(() -> parser.parse(unparsed));
+        Weather weather = assertDoesNotThrow(() -> new Weather(parsed));
+        day = weather.getDaySmallestTemperatureSpread();
+
         assertEquals("14", day, "day with lowst temperature spread should be 14");
     }
 }

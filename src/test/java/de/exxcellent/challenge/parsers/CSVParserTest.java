@@ -22,13 +22,9 @@ class CSVParserTest {
         validCsv.add("A,B,C");
         validCsv.add("1,2,3");
         validCsv.add("x,y,z");
-        try {
-            ParsedData parsed = parser.parse(validCsv);
-            assertEquals("B", parsed.getColumnNames().get(1), "Columname should be B");
-            assertEquals("y", parsed.getData().get(1).get(1), "Data should be y");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ParsedData parsed = assertDoesNotThrow(() -> parser.parse(validCsv));
+        assertEquals("B", parsed.getColumnNames().get(1), "Columname should be B");
+        assertEquals("y", parsed.getData().get(1).get(1), "Data should be y");
     }
 
     @Test

@@ -20,14 +20,10 @@ class FileResourceReaderTest {
 
     @Test
     void readingFileSucceedes() {
-        try {
-            List<String> content = reader.read("src/test/resources/readerTest.csv");
-            assertEquals("1,2,3", content.get(1), "second line of readerTest.csv should be 1,2,3");
-            content = reader.read("src/test/resources/readerTest.txt");
-            assertEquals("not", content.get(1), "second line of readerTest.txt should be \"not\"");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        List<String> content = assertDoesNotThrow(() -> reader.read("src/test/resources/readerTest.csv"));
+        assertEquals("1,2,3", content.get(1), "second line of readerTest.csv should be 1,2,3");
+        content = assertDoesNotThrow(() -> reader.read("src/test/resources/readerTest.txt"));
+        assertEquals("not", content.get(1), "second line of readerTest.txt should be \"not\"");
     }
 
     @Test
