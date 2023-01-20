@@ -3,6 +3,7 @@ package de.exxcellent.challenge;
 import de.exxcellent.challenge.parsers.CSVParser;
 import de.exxcellent.challenge.parsers.ParsedData;
 import de.exxcellent.challenge.parsers.Parser;
+import de.exxcellent.challenge.parsers.ParserFactory;
 import de.exxcellent.challenge.readers.FileResourceReader;
 import de.exxcellent.challenge.readers.ResourceReader;
 
@@ -25,9 +26,11 @@ public final class App {
 
         // Your preparation code …
         ResourceReader reader = new FileResourceReader();
-        Parser parser = new CSVParser();
-        ParsedData parsed;
+        ParserFactory parserFactory = new ParserFactory();
         try {
+            Parser parser = parserFactory.createParserByType("csv");
+            ParsedData parsed;
+
             List<String> unparsed = reader.read("src/main/resources/de/exxcellent/challenge/weather.csv");
             parsed = parser.parse(unparsed);
             Weather weather = new Weather(parsed);
