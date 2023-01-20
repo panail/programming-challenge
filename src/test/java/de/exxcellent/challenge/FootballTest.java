@@ -5,30 +5,28 @@ import de.exxcellent.challenge.parsers.ParsedData;
 import de.exxcellent.challenge.parsers.Parser;
 import de.exxcellent.challenge.readers.FileResourceReader;
 import de.exxcellent.challenge.readers.ResourceReader;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class WeatherTest {
+class FootballTest {
 
     @Test
-    void getDaySmallestTemperatureSpread() {
+    void getTeamLowestGoalDifference() {
         ResourceReader reader = new FileResourceReader();
         Parser parser = new CSVParser();
         ParsedData parsed;
-        String day = "";
+        String team = "";
         try {
-            List<String> unparsed = reader.read("src/test/resources/weather.csv");
+            List<String> unparsed = reader.read("src/test/resources/football.csv");
             parsed = parser.parse(unparsed);
-            Weather weather = new Weather(parsed);
-            day = weather.getDaySmallestTemperatureSpread();
-
+            Football football = new Football(parsed);
+            team = football.getTeamLowestGoalDifference();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        assertEquals("14", day, "day with lowst temperature spread should be 14");
+        assertEquals("Aston_Villa", team, "team with lowest goal difference should be Arsenal");
     }
 }

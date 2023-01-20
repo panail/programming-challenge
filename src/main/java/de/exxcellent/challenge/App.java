@@ -31,12 +31,13 @@ public final class App {
             List<String> unparsed = reader.read("src/main/resources/de/exxcellent/challenge/weather.csv");
             parsed = parser.parse(unparsed);
             Weather weather = new Weather(parsed);
-
-
-            String dayWithSmallestTempSpread = weather.getDaySmallestTemperatureSpread();     // Your day analysis function call …
+            String dayWithSmallestTempSpread = weather.getDaySmallestTemperatureSpread();
             System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
 
-            String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
+            unparsed = reader.read("src/main/resources/de/exxcellent/challenge/football.csv");
+            parsed = parser.parse(unparsed);
+            Football football = new Football(parsed);
+            String teamWithSmallestGoalSpread = football.getTeamLowestGoalDifference();
             System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
 
         } catch (Exception e) {
