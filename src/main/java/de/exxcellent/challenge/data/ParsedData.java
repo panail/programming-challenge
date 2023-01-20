@@ -1,4 +1,4 @@
-package de.exxcellent.challenge.parsers;
+package de.exxcellent.challenge.data;
 
 import java.util.List;
 

@@ -1,7 +1,8 @@
 package de.exxcellent.challenge;
 
-import de.exxcellent.challenge.parsers.CSVParser;
-import de.exxcellent.challenge.parsers.ParsedData;
+import de.exxcellent.challenge.analysers.FootballAnalyser;
+import de.exxcellent.challenge.analysers.WeatherAnalyser;
+import de.exxcellent.challenge.data.ParsedData;
 import de.exxcellent.challenge.parsers.Parser;
 import de.exxcellent.challenge.parsers.ParserFactory;
 import de.exxcellent.challenge.readers.FileResourceReader;
@@ -33,14 +34,14 @@ public final class App {
 
             List<String> unparsed = reader.read("src/main/resources/de/exxcellent/challenge/weather.csv");
             parsed = parser.parse(unparsed);
-            Weather weather = new Weather(parsed);
-            String dayWithSmallestTempSpread = weather.getDaySmallestTemperatureSpread();
+            WeatherAnalyser weatherAnalyser = new WeatherAnalyser(parsed);
+            String dayWithSmallestTempSpread = weatherAnalyser.getDaySmallestTemperatureSpread();
             System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
 
             unparsed = reader.read("src/main/resources/de/exxcellent/challenge/football.csv");
             parsed = parser.parse(unparsed);
-            Football football = new Football(parsed);
-            String teamWithSmallestGoalSpread = football.getTeamLowestGoalDifference();
+            FootballAnalyser footballAnalyser = new FootballAnalyser(parsed);
+            String teamWithSmallestGoalSpread = footballAnalyser.getTeamLowestGoalDifference();
             System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
 
         } catch (Exception e) {

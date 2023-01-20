@@ -1,16 +1,14 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.analysers;
 
-import de.exxcellent.challenge.parsers.InvalidFormat;
-import de.exxcellent.challenge.parsers.ParsedData;
+import de.exxcellent.challenge.exceptions.InvalidFormat;
+import de.exxcellent.challenge.data.ParsedData;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class Weather {
+public class WeatherAnalyser {
     private ParsedData data;
 
-    public Weather(ParsedData data) throws InvalidFormat {
+    public WeatherAnalyser(ParsedData data) throws InvalidFormat {
         this.data = data;
 
         //verify data is Weather data

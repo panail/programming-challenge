@@ -1,5 +1,7 @@
 package de.exxcellent.challenge.parsers;
 
+import de.exxcellent.challenge.exceptions.NotSupported;
+
 public class ParserFactory {
 
     public Parser createParserByType(String type) throws NotSupported {

@@ -1,4 +1,4 @@
-package de.exxcellent.challenge.parsers;
+package de.exxcellent.challenge.exceptions;
 
 public class InvalidFormat extends Exception{
     public InvalidFormat(String message) {

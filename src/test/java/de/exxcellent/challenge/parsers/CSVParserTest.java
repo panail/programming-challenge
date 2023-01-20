@@ -1,5 +1,7 @@
 package de.exxcellent.challenge.parsers;
 
+import de.exxcellent.challenge.data.ParsedData;
+import de.exxcellent.challenge.exceptions.InvalidFormat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,6 @@
 package de.exxcellent.challenge.parsers;
 
+import de.exxcellent.challenge.exceptions.NotSupported;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

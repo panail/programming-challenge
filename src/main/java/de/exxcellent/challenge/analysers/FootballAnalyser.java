@@ -1,14 +1,14 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.analysers;
 
-import de.exxcellent.challenge.parsers.InvalidFormat;
-import de.exxcellent.challenge.parsers.ParsedData;
+import de.exxcellent.challenge.exceptions.InvalidFormat;
+import de.exxcellent.challenge.data.ParsedData;
 
 import java.util.List;
 
-public class Football {
+public class FootballAnalyser {
     private ParsedData data;
 
-    public Football(ParsedData data) throws InvalidFormat {
+    public FootballAnalyser(ParsedData data) throws InvalidFormat {
         this.data = data;
 
         //verify data is Football data

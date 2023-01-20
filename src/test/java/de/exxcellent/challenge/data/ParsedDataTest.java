@@ -1,5 +1,6 @@
-package de.exxcellent.challenge.parsers;
+package de.exxcellent.challenge.data;
 
+import de.exxcellent.challenge.data.ParsedData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
