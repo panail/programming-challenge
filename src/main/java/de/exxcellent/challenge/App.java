@@ -25,21 +25,25 @@ public final class App {
      * @param args The CLI arguments passed
      */
     public static void main(String... args) {
+        final String WEATHERPATH = "src/main/resources/de/exxcellent/challenge/weather.csv";
+        final String FOOTBALLPATH = "src/main/resources/de/exxcellent/challenge/football.csv";
 
         // Your preparation code …
         ResourceReader reader = new FileResourceReader();
         ParserFactory parserFactory = new ParserFactory();
+        Parser parser;
         try {
-            Parser parser = parserFactory.createParserByType("csv");
             ParsedData parsed;
 
-            UnparsedData unparsed = reader.read("src/main/resources/de/exxcellent/challenge/weather.csv");
+            UnparsedData unparsed = reader.read(WEATHERPATH);
+            parser = parserFactory.createParserForData(unparsed);
             parsed = parser.parse(unparsed);
             WeatherAnalyser weatherAnalyser = new WeatherAnalyser(parsed);
             String dayWithSmallestTempSpread = weatherAnalyser.getDaySmallestTemperatureSpread();
             System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
 
-            unparsed = reader.read("src/main/resources/de/exxcellent/challenge/football.csv");
+            unparsed = reader.read(FOOTBALLPATH);
+            parser = parserFactory.createParserForData(unparsed);
             parsed = parser.parse(unparsed);
             FootballAnalyser footballAnalyser = new FootballAnalyser(parsed);
             String teamWithSmallestGoalSpread = footballAnalyser.getTeamLowestGoalDifference();
